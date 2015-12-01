@@ -444,6 +444,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/logger.js~logger#post",
+    "class/src/Logger.js~Logger.html#instance-method-post",
+    "src/Logger.js~Logger#post",
+    "method"
+  ],
+  [
     "src/logger.js~logger#removelogger",
     "class/src/Logger.js~Logger.html#instance-method-removeLogger",
     "src/Logger.js~Logger#removeLogger",

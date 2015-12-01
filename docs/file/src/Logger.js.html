@@ -189,6 +189,54 @@ export default class Logger
    }
 
    /**
+    * Posts a log message given a log level and parameters.
+    *
+    * @param {string}   level - log level
+    * @param {*}        params - log message parameters to forward onto dispatched method.
+    */
+   post(level, ...params)
+   {
+      if (typeof s_LOG_LEVELS[level] === &apos;undefined&apos;)
+      {
+         console.log(`post - unknown log level: ${level}`);
+         return;
+      }
+
+      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS[&apos;info&apos;]);
+      const logger = this._loggerMap.get(this._context);
+
+      if (enabled &amp;&amp; logger)
+      {
+         switch (level)
+         {
+            case &apos;fatal&apos;:
+               logger.fatal(...params);
+               break;
+
+            case &apos;error&apos;:
+               logger.error(...params);
+               break;
+
+            case &apos;warn&apos;:
+               logger.warn(...params);
+               break;
+
+            case &apos;info&apos;:
+               logger.info(...params);
+               break;
+
+            case &apos;debug&apos;:
+               logger.debug(...params);
+               break;
+
+            case &apos;trace&apos;:
+               logger.trace(...params);
+               break;
+         }
+      }
+   }
+
+   /**
     * Removes the logger by the given context.
     *
     * @param {*}  context - The context to check.
