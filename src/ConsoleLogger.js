@@ -10,62 +10,50 @@ export default class ConsoleLogger
 {
    /**
     * Post debug message.
-    *
-    * @param {string}   message - The log message.
     */
-   debug(message)
+   debug()
    {
-      console.log(`Debug: ${message}`);
+      console.log(`Debug: ${JSON.stringify(arguments)}`);
    }
 
    /**
     * Post error message.
-    *
-    * @param {string}   message - The log message.
     */
-   error(message)
+   error()
    {
-      console.error(`Error: ${message}`);
+      console.error(`Error: ${JSON.stringify(arguments)}`);
    }
 
    /**
     * Post fatal message.
-    *
-    * @param {string}   message - The log message.
     */
-   fatal(message)
+   fatal()
    {
-      console.error(`Fatal: ${message}`);
+      console.error(`Fatal: ${JSON.stringify(arguments)}`);
    }
 
    /**
     * Post info message.
-    *
-    * @param {string}   message - The log message.
     */
-   info(message)
+   info()
    {
-      console.log(`Info: ${message}`);
+      console.log(`Info: ${JSON.stringify(arguments)}`);
    }
 
    /**
     * Post trace message.
-    *
-    * @param {string}   message - The log message.
     */
-   trace(message)
+   trace()
    {
-      console.log(`Trace: ${message}`);
+      console.log(`Trace: ${JSON.stringify(arguments)}`);
       console.trace();
    }
 
    /**
     * Post warn message.
-    *
-    * @param {string}   message - The log message.
     */
-   warn(message)
+   warn()
    {
-      console.warn(`Warn: ${message}`);
+      console.warn(`Warn: ${JSON.stringify(arguments)}`);
    }
 }
