@@ -13,7 +13,13 @@ export default class ConsoleLogger
     */
    debug()
    {
-      console.log(`Debug: ${JSON.stringify(arguments)}`);
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Debug: ${message}`); }
    }
 
    /**
@@ -21,7 +27,13 @@ export default class ConsoleLogger
     */
    error()
    {
-      console.error(`Error: ${JSON.stringify(arguments)}`);
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Error: ${message}`); }
    }
 
    /**
@@ -29,7 +41,13 @@ export default class ConsoleLogger
     */
    fatal()
    {
-      console.error(`Fatal: ${JSON.stringify(arguments)}`);
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Fatal: ${message}`); }
    }
 
    /**
@@ -37,7 +55,13 @@ export default class ConsoleLogger
     */
    info()
    {
-      console.log(`Info: ${JSON.stringify(arguments)}`);
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Info: ${message}`); }
    }
 
    /**
@@ -45,8 +69,13 @@ export default class ConsoleLogger
     */
    trace()
    {
-      console.log(`Trace: ${JSON.stringify(arguments)}`);
-      console.trace();
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Trace: ${message}`); console.trace(); }
    }
 
    /**
@@ -54,6 +83,12 @@ export default class ConsoleLogger
     */
    warn()
    {
-      console.warn(`Warn: ${JSON.stringify(arguments)}`);
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Warn: ${message}`); }
    }
 }

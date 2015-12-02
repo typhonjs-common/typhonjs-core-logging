@@ -51,63 +51,86 @@ export default class ConsoleLogger
 {
    /**
     * Post debug message.
-    *
-    * @param {string}   message - The log message.
     */
-   debug(message)
+   debug()
    {
-      console.log(`Debug: ${message}`);
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Debug: ${message}`); }
    }
 
    /**
     * Post error message.
-    *
-    * @param {string}   message - The log message.
     */
-   error(message)
+   error()
    {
-      console.error(`Error: ${message}`);
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Error: ${message}`); }
    }
 
    /**
     * Post fatal message.
-    *
-    * @param {string}   message - The log message.
     */
-   fatal(message)
+   fatal()
    {
-      console.error(`Fatal: ${message}`);
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Fatal: ${message}`); }
    }
 
    /**
     * Post info message.
-    *
-    * @param {string}   message - The log message.
     */
-   info(message)
+   info()
    {
-      console.log(`Info: ${message}`);
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Info: ${message}`); }
    }
 
    /**
     * Post trace message.
-    *
-    * @param {string}   message - The log message.
     */
-   trace(message)
+   trace()
    {
-      console.log(`Trace: ${message}`);
-      console.trace();
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Trace: ${message}`); console.trace(); }
    }
 
    /**
     * Post warn message.
-    *
-    * @param {string}   message - The log message.
     */
-   warn(message)
+   warn()
    {
-      console.warn(`Warn: ${message}`);
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = JSON.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Warn: ${message}`); }
    }
 }</code></pre>
 
