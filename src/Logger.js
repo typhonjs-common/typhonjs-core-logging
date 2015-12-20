@@ -16,7 +16,7 @@ const s_LOG_LEVELS =
 
 const s_IS_LEVEL_ENABLED = (currentLevel, requestedLevel) =>
 {
-   return currentLevel <= requestedLevel && s_ALL_LOGGING_ENABLED;
+   return Number.isInteger(currentLevel) && currentLevel <= requestedLevel && s_ALL_LOGGING_ENABLED;
 };
 
 /* eslint-disable no-console */
@@ -36,8 +36,10 @@ export default class Logger
    constructor()
    {
       this._context = 'default';
-      this._logLevel = s_LOG_LEVELS['all'];
+      this._logLevelMap = new Map();
       this._loggerMap = new Map();
+
+      this.setLogLevel(s_LOG_LEVELS['all']);
    }
 
    /**
@@ -45,7 +47,7 @@ export default class Logger
     */
    debug()
    {
-      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS['debug']);
+      const enabled = s_IS_LEVEL_ENABLED(this.getLogLevel(), s_LOG_LEVELS['debug']);
       const logger = this._loggerMap.get(this._context);
 
       if (enabled && logger && logger.debug)
@@ -59,7 +61,7 @@ export default class Logger
     */
    error()
    {
-      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS['error']);
+      const enabled = s_IS_LEVEL_ENABLED(this.getLogLevel(), s_LOG_LEVELS['error']);
       const logger = this._loggerMap.get(this._context);
 
       if (enabled && logger)
@@ -73,7 +75,7 @@ export default class Logger
     */
    fatal()
    {
-      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS['fatal']);
+      const enabled = s_IS_LEVEL_ENABLED(this.getLogLevel(), s_LOG_LEVELS['fatal']);
       const logger = this._loggerMap.get(this._context);
 
       if (enabled && logger)
@@ -90,6 +92,16 @@ export default class Logger
    getContext()
    {
       return this._context;
+   }
+
+   /**
+    * Get the log level for the current context.
+    *
+    * @returns {*}
+    */
+   getLogLevel()
+   {
+      return this._logLevelMap.get(this._context);
    }
 
    /**
@@ -130,7 +142,7 @@ export default class Logger
          return false;
       }
 
-      return s_IS_LEVEL_ENABLED(this._logLevel, requestedLevel);
+      return s_IS_LEVEL_ENABLED(this.getLogLevel(), requestedLevel);
    }
 
    /**
@@ -138,7 +150,7 @@ export default class Logger
     */
    info()
    {
-      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS['info']);
+      const enabled = s_IS_LEVEL_ENABLED(this.getLogLevel(), s_LOG_LEVELS['info']);
       const logger = this._loggerMap.get(this._context);
 
       if (enabled && logger)
@@ -161,7 +173,7 @@ export default class Logger
          return;
       }
 
-      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS['info']);
+      const enabled = s_IS_LEVEL_ENABLED(this.getLogLevel(), s_LOG_LEVELS['info']);
       const logger = this._loggerMap.get(this._context);
 
       if (enabled && logger)
@@ -208,18 +220,18 @@ export default class Logger
    /**
     * Sets the current context
     *
-    * @param {*}  context - The context to set.
+    * @param {string}   context - The context to set.
     * @returns {boolean}
     */
    setContext(context)
    {
-      if (typeof context === 'undefined' || context === null)
+      if (typeof context !== 'string')
       {
-         console.log(`setContext - context is not defined or null: ${context}`);
-         return false;
+         throw new TypeError(`setContext - context is not a string: ${context}`);
       }
 
       this._context = context;
+      return true;
    }
 
    /**
@@ -238,18 +250,29 @@ export default class Logger
          return false;
       }
 
-      this._logLevel = requestedLevel;
+      this._logLevelMap.set(this._context, requestedLevel);
+      return true;
    }
 
    /**
     * Sets the logger for the give context.
     *
-    * @param {*}  context - The context to set.
-    * @param {*}  logger - The logger to set.
+    * @param {string}   context - The context to set.
+    * @param {*}        logger - The logger to set.
     */
    setLogger(context, logger)
    {
+      if (typeof context !== 'string')
+      {
+         throw new TypeError(`setLogger - context is not a string: ${context}`);
+      }
+
       this._loggerMap.set(context, logger);
+
+      if (!this._logLevelMap.has(context))
+      {
+         this._logLevelMap.set(context, s_LOG_LEVELS['all']);
+      }
    }
 
    /**
@@ -257,7 +280,7 @@ export default class Logger
     */
    trace()
    {
-      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS['trace']);
+      const enabled = s_IS_LEVEL_ENABLED(this.getLogLevel(), s_LOG_LEVELS['trace']);
       const logger = this._loggerMap.get(this._context);
 
       if (enabled && logger)
@@ -271,7 +294,7 @@ export default class Logger
     */
    warn()
    {
-      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS['warn']);
+      const enabled = s_IS_LEVEL_ENABLED(this.getLogLevel(), s_LOG_LEVELS['warn']);
       const logger = this._loggerMap.get(this._context);
 
       if (enabled && logger)
