@@ -247,6 +247,7 @@ export default class Logger
       if (typeof requestedLevel === 'undefined' || requestedLevel === null)
       {
          console.log(`setLogLevel - unknown log level: ${level}`);
+console.trace();
          return false;
       }
 
