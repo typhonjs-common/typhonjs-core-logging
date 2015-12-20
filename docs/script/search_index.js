@@ -438,6 +438,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/logger.js~logger#getloglevel",
+    "class/src/Logger.js~Logger.html#instance-method-getLogLevel",
+    "src/Logger.js~Logger#getLogLevel",
+    "method"
+  ],
+  [
     "src/logger.js~logger#getlogger",
     "class/src/Logger.js~Logger.html#instance-method-getLogger",
     "src/Logger.js~Logger#getLogger",
