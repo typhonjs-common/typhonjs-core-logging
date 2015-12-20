@@ -8,6 +8,11 @@
  */
 export default class ConsoleLogger
 {
+   /**
+    * Sets the serializer; defaults to `JSON` if none supplied.
+    *
+    * @param {Object} serializer - An instance that conform to the JSON API.
+    */
    constructor(serializer = JSON)
    {
       this.setSerializer(serializer);

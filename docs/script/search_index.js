@@ -348,6 +348,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/consolelogger.js~consolelogger#constructor",
+    "class/src/ConsoleLogger.js~ConsoleLogger.html#instance-constructor-constructor",
+    "src/ConsoleLogger.js~ConsoleLogger#constructor",
+    "method"
+  ],
+  [
     "src/consolelogger.js~consolelogger#debug",
     "class/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-debug",
     "src/ConsoleLogger.js~ConsoleLogger#debug",
@@ -366,9 +372,21 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/consolelogger.js~consolelogger#getserializer",
+    "class/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-getSerializer",
+    "src/ConsoleLogger.js~ConsoleLogger#getSerializer",
+    "method"
+  ],
+  [
     "src/consolelogger.js~consolelogger#info",
     "class/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-info",
     "src/ConsoleLogger.js~ConsoleLogger#info",
+    "method"
+  ],
+  [
+    "src/consolelogger.js~consolelogger#setserializer",
+    "class/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-setSerializer",
+    "src/ConsoleLogger.js~ConsoleLogger#setSerializer",
     "method"
   ],
   [
