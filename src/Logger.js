@@ -39,7 +39,7 @@ export default class Logger
       this._logLevelMap = new Map();
       this._loggerMap = new Map();
 
-      this.setLogLevel(s_LOG_LEVELS['all']);
+      this.setLogLevel('all');
    }
 
    /**
@@ -247,7 +247,6 @@ export default class Logger
       if (typeof requestedLevel === 'undefined' || requestedLevel === null)
       {
          console.log(`setLogLevel - unknown log level: ${level}`);
-console.trace();
          return false;
       }
 
