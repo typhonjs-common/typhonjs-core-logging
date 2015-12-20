@@ -8,6 +8,11 @@
  */
 export default class ConsoleLogger
 {
+   constructor(serializer = JSON)
+   {
+      this.setSerializer(serializer);
+   }
+
    /**
     * Post debug message.
     */
@@ -16,7 +21,7 @@ export default class ConsoleLogger
       let message;
 
       // Attempt to convert the arguments to a string.
-      try { message = JSON.stringify(arguments); }
+      try { message = this._serializer.stringify(arguments); }
       catch(ignore) { /* ignore */}
 
       if (message !== undefined) { console.log(`Debug: ${message}`); }
@@ -30,7 +35,7 @@ export default class ConsoleLogger
       let message;
 
       // Attempt to convert the arguments to a string.
-      try { message = JSON.stringify(arguments); }
+      try { message = this._serializer.stringify(arguments); }
       catch(ignore) { /* ignore */}
 
       if (message !== undefined) { console.log(`Error: ${message}`); }
@@ -44,10 +49,20 @@ export default class ConsoleLogger
       let message;
 
       // Attempt to convert the arguments to a string.
-      try { message = JSON.stringify(arguments); }
+      try { message = this._serializer.stringify(arguments); }
       catch(ignore) { /* ignore */}
 
       if (message !== undefined) { console.log(`Fatal: ${message}`); }
+   }
+
+   /**
+    * Returns the serializer.
+    *
+    * @returns {Object|*}
+    */
+   getSerializer()
+   {
+      return this._serializer;
    }
 
    /**
@@ -58,10 +73,26 @@ export default class ConsoleLogger
       let message;
 
       // Attempt to convert the arguments to a string.
-      try { message = JSON.stringify(arguments); }
+      try { message = this._serializer.stringify(arguments); }
       catch(ignore) { /* ignore */}
 
       if (message !== undefined) { console.log(`Info: ${message}`); }
+   }
+
+   /**
+    * Sets the serializer which must conform to the JSON API.
+    *
+    * @param {Object}   serializer - An instance of a JSON like serializer.
+    */
+   setSerializer(serializer)
+   {
+      if (typeof serializer !== 'object' || typeof serializer.stringify !== 'function' ||
+       typeof serializer.parse !== 'function')
+      {
+         throw new TypeError('setSerializer - `serializer` does not conform to the JSON API.');
+      }
+
+      this._serializer = serializer;
    }
 
    /**
@@ -72,7 +103,7 @@ export default class ConsoleLogger
       let message;
 
       // Attempt to convert the arguments to a string.
-      try { message = JSON.stringify(arguments); }
+      try { message = this._serializer.stringify(arguments); }
       catch(ignore) { /* ignore */}
 
       if (message !== undefined) { console.log(`Trace: ${message}`); console.trace(); }
@@ -86,7 +117,7 @@ export default class ConsoleLogger
       let message;
 
       // Attempt to convert the arguments to a string.
-      try { message = JSON.stringify(arguments); }
+      try { message = this._serializer.stringify(arguments); }
       catch(ignore) { /* ignore */}
 
       if (message !== undefined) { console.log(`Warn: ${message}`); }
