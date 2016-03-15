@@ -27,7 +27,7 @@ export default class ConsoleLogger
 
       // Attempt to convert the arguments to a string.
       try { message = this._serializer.stringify(arguments); }
-      catch(ignore) { /* ignore */}
+      catch (ignore) { /* ignore */ }
 
       if (message !== undefined) { console.log(`Debug: ${message}`); }
    }
@@ -41,7 +41,7 @@ export default class ConsoleLogger
 
       // Attempt to convert the arguments to a string.
       try { message = this._serializer.stringify(arguments); }
-      catch(ignore) { /* ignore */}
+      catch (ignore) { /* ignore */ }
 
       if (message !== undefined) { console.log(`Error: ${message}`); }
    }
@@ -55,7 +55,7 @@ export default class ConsoleLogger
 
       // Attempt to convert the arguments to a string.
       try { message = this._serializer.stringify(arguments); }
-      catch(ignore) { /* ignore */}
+      catch (ignore) { /* ignore */ }
 
       if (message !== undefined) { console.log(`Fatal: ${message}`); }
    }
@@ -79,7 +79,7 @@ export default class ConsoleLogger
 
       // Attempt to convert the arguments to a string.
       try { message = this._serializer.stringify(arguments); }
-      catch(ignore) { /* ignore */}
+      catch (ignore) { /* ignore */ }
 
       if (message !== undefined) { console.log(`Info: ${message}`); }
    }
@@ -109,7 +109,7 @@ export default class ConsoleLogger
 
       // Attempt to convert the arguments to a string.
       try { message = this._serializer.stringify(arguments); }
-      catch(ignore) { /* ignore */}
+      catch (ignore) { /* ignore */ }
 
       if (message !== undefined) { console.log(`Trace: ${message}`); console.trace(); }
    }
@@ -123,7 +123,7 @@ export default class ConsoleLogger
 
       // Attempt to convert the arguments to a string.
       try { message = this._serializer.stringify(arguments); }
-      catch(ignore) { /* ignore */}
+      catch (ignore) { /* ignore */ }
 
       if (message !== undefined) { console.log(`Warn: ${message}`); }
    }
